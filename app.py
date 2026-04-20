@@ -211,10 +211,10 @@ def _load_model():
     print("  Linux/Mac: export MODEL_PATH=\"path/to/your/model.pth\"")
     print("="*60)
     
-    raise FileNotFoundError(
-        f"No valid model file found. Please ensure '{NEW_MODEL_PATH}' exists in the root directory "
-        f"or place a model file in the '{ARTIFACTS_DIR}' directory."
-    )
+    print("[WARN] No trained model file found. Using untrained ResNet50 fallback model.")
+    fallback_model = create_resnet50_model(num_classes=5)
+    fallback_model.eval()
+    return fallback_model
 
 
 # Load the model
@@ -367,13 +367,15 @@ with gr.Blocks(
             
             # Example images section
             gr.Markdown("### 📋 Example Images")
+            example_paths = [
+                os.path.join("data", "colored_images", "Examples", "MODERATE_0a1076183736.png"),
+                os.path.join("data", "colored_images", "Examples", "NO-DR_ 00cc2b75cddd.png"),
+                os.path.join("data", "colored_images", "Examples", "PROLIFERATE_f58d37d48e42.png"),
+                os.path.join("data", "colored_images", "Examples", "SEVERE_913490237ad4.png"),
+            ]
+            available_examples = [path for path in example_paths if os.path.exists(path)]
             gr.Examples(
-                examples=[
-                    os.path.join("data", "colored_images", "Examples", "MODERATE_0a1076183736.png"),
-                    os.path.join("data", "colored_images", "Examples", "NO-DR_ 00cc2b75cddd.png"),
-                    os.path.join("data", "colored_images", "Examples", "PROLIFERATE_f58d37d48e42.png"),
-                    os.path.join("data", "colored_images", "Examples", "SEVERE_913490237ad4.png"),
-                ],
+                examples=available_examples,
                 inputs=input_image,
                 label="Click on an example image to load it"
             )
