@@ -1,14 +1,15 @@
 # Diabetic Retinopathy Detection using Deep Learning
 
 ## Description
-This project builds an AI-powered Diabetic Retinopathy detection system using deep learning on retinal fundus images. It uses a ResNet50-based model and provides a Gradio web interface for easy local inference and demonstration.
+This project detects diabetic retinopathy severity from retinal fundus images using deep learning.  
+It includes a trained ResNet50-based classifier and a Gradio web interface for quick local testing and demo use.
 
 ## Features
-- Automated prediction of diabetic retinopathy severity from retinal images
-- Deep learning backbone based on ResNet50
-- Interactive Gradio web app for user-friendly testing
-- Training and utility scripts for dataset preparation and experimentation
-- Batch/script-based local run support for Windows users
+- Retinal image classification into 5 diabetic retinopathy severity classes
+- ResNet50-based model loading with fallback support
+- Interactive Gradio UI for upload-and-predict workflow
+- Sample example images for quick testing
+- Windows-friendly run scripts and environment setup
 
 ## Tech Stack
 - Python
@@ -16,34 +17,30 @@ This project builds an AI-powered Diabetic Retinopathy detection system using de
 - ResNet50
 - Gradio
 
-## Installation
-1. Clone the repository:
-   ```powershell
-   git clone <your-repo-url>
-   cd diabetic-retinopathy-detection_latest
-   ```
-2. Create and activate a virtual environment:
-   ```powershell
-   python -m venv venv
-   .\venv\Scripts\Activate.ps1
-   ```
-3. Install dependencies:
-   ```powershell
-   pip install -r requirements.txt
-   ```
-
-## How to Run the Project
-### Option 1: Run directly
+## Installation (Windows PowerShell)
 ```powershell
-python app.py
+# 1) Create virtual environment
+python -m venv .venv
+
+# 2) Activate virtual environment
+.\.venv\Scripts\Activate.ps1
+
+# 3) Install dependencies
+python -m pip install -r requirements.txt
 ```
 
-### Option 2: Use batch script (Windows)
+## How to Run the Project
 ```powershell
+# Option A: Direct run
+.\.venv\Scripts\python.exe app.py
+
+# Option B: Batch script
 .\run.bat
 ```
 
-After startup, open: `http://127.0.0.1:7860`
+After launch, open the URL shown in terminal (for example `http://127.0.0.1:7860`).
 
 ## Screenshots
-_Add screenshots of the Gradio UI and prediction results here._
+_Add screenshots of the Gradio interface and prediction results here._
+
+

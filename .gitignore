@@ -1,40 +1,44 @@
+# Virtual environments
 .venv/
 venv/
 env/
 ENV/
 
+# Python cache and bytecode
 __pycache__/
 *.py[cod]
 *$py.class
 
+# Notebook and test caches
 .ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
 
+# Build artifacts
 build/
 dist/
 *.egg-info/
 .eggs/
 
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
-.coverage
-.coverage.*
-htmlcov/
-
-.vscode/
-.idea/
-
+# Logs and runtime output
 *.log
 run_log.txt
 logs/
 lightning_logs/
+
+# App-generated files
 .gradio/
 flagged/
 
-# Model and training artifact files
+# Model and artifact files
 *.pth
 *.pt
 artifacts/
+
+# IDE/editor settings
+.vscode/
+.idea/
 
 # OS files
 Thumbs.db
