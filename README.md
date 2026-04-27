@@ -9,7 +9,7 @@
 </div>
 
 # Diabetic Retinopathy Detection using Deep Learning
-![DR](output/Screenshot (18).png) 
+![DR](https://github.com/praveengouda25/Diabetic-Retinopathy-using-Deep-Learning/blob/b7aa21dfe159f1636662d94e4f8df5ef05fa851c/output/Screenshot%20(18).png)) 
 ## Description
 This project detects diabetic retinopathy severity from retinal fundus images using deep learning.  
 It includes a trained ResNet50-based classifier and a Gradio web interface for quick local testing and demo use.
