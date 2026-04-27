@@ -252,7 +252,7 @@ Class imbalance is a critical problem in medical image classification:
 - Apply augmentations during training to increase robustness
 
 ---
-![Data-Visualization](https://github.com/praveengouda25/Diabetic-Retinopathy-using-Deep-Learning/blob/a9bec08f81259de3a99391da7fa1156d183d26f1/output/Picture3.png) 
+![](https://github.com/praveengouda25/Diabetic-Retinopathy-using-Deep-Learning/blob/e1a6304e03150d250477461130a47d741542024d/output/Screenshot%20(9).png) 
 
 ## Installation (Windows PowerShell)
 ```powershell
