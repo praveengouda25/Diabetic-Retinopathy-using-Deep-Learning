@@ -252,7 +252,113 @@ Class imbalance is a critical problem in medical image classification:
 - Apply augmentations during training to increase robustness
 
 ---
-![](https://github.com/praveengouda25/Diabetic-Retinopathy-using-Deep-Learning/blob/e1a6304e03150d250477461130a47d741542024d/output/Screenshot%20(9).png) 
+
+##  Model Training Details
+
+### Model Architecture: ResNet50
+
+**ResNet50** (Residual Network with 50 layers) is a deep convolutional neural network architecture that won the ImageNet competition in 2015. It introduced the concept of "residual connections" or "skip connections" that allow gradients to flow through deeper networks.
+
+**Why ResNet50 was Selected:**
+
+1. **Proven Performance**: Excellent results on ImageNet and medical imaging tasks
+2. **Transfer Learning**: Pretrained on ImageNet (1.2 million images), providing strong feature extractors
+3. **Depth**: 50 layers provide sufficient capacity to learn complex patterns
+4. **Efficiency**: Good balance between accuracy and computational cost
+5. **Medical Imaging Success**: Widely used in medical image classification with proven results
+
+---
+**Output:**
+- Shape: `(1, 5)` - probability distribution over 5 classes
+- Values: Between 0.0 and 1.0, sum to 1.0
+- Example: `[0.05, 0.10, 0.70, 0.10, 0.05]` → 70% confidence for "Moderate"
+
+### Predicted Class Displayed
+![Image Processing](https://github.com/praveengouda25/Diabetic-Retinopathy-using-Deep-Learning/blob/1c469112bc2e61b208ba89601320ea4f3f183f34/output/Picture2.png) 
+
+
+**Process:**
+```python
+confidence, predicted_class = torch.max(probabilities, 1)
+predicted_class_idx = predicted_class.item()
+confidence_score = confidence.item()
+```
+
+**Result Extraction:**
+- `predicted_class_idx`: Index (0-4) of class with highest probability
+- `confidence_score`: Probability value of predicted class
+- `confidences`: Dictionary mapping class names to probabilities
+
+**Display Format:**
+```python
+{
+    "No_DR": 0.05,
+    "Mild": 0.10,
+    "Moderate": 0.70,  # ← Predicted class
+    "Severe": 0.10,
+    "Proliferate": 0.05
+}
+```
+
+**User Interface:**
+- Gradio displays all 5 class probabilities as a bar chart
+- Highlights the predicted class
+- Shows confidence percentage
+- Provides interpretation guide
+
+![Image Processing](https://github.com/praveengouda25/Diabetic-Retinopathy-using-Deep-Learning/blob/1c469112bc2e61b208ba89601320ea4f3f183f34/output/Picture2.png) 
+
+### Complete Pipeline Summary
+
+```
+User Upload
+    ↓
+[PIL Image, variable size]
+    ↓
+Resize to 224×224
+    ↓
+Convert to Tensor [0, 1]
+    ↓
+Normalize (ImageNet stats)
+    ↓
+Add Batch Dimension [1, 3, 224, 224]
+    ↓
+Model Forward Pass
+    ↓
+[ResNet50 Feature Extraction]
+    ↓
+[Fully Connected Layers]
+    ↓
+Raw Logits [1, 5]
+    ↓
+Softmax
+    ↓
+Probabilities [1, 5] (sum = 1.0)
+    ↓
+Extract Max → Predicted Class
+    ↓
+Display Results (Gradio UI)
+```
+
+**Total Processing Time:**
+- Typically 50-200 milliseconds per image (CPU)
+- 10-50 milliseconds per image (GPU)
+- Depends on image size and hardware
+
+---
+
+## 8. User Interface (Gradio/Flask UI)
+
+### Purpose of the Interface
+
+The Gradio web interface provides an **accessible, user-friendly platform** for diabetic retinopathy detection without requiring technical expertise. It serves multiple purposes:
+
+1. **Medical Screening**: Enables healthcare workers to quickly screen fundus images
+2. **Research Tool**: Allows researchers to test the model on new datasets
+3. **Educational**: Demonstrates AI capabilities in medical imaging
+4. **Prototype Deployment**: Provides a production-ready interface for clinical trials
+
+
 
 ## Installation (Windows PowerShell)
 ```powershell
