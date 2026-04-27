@@ -35,36 +35,224 @@ Retinal fundus images dataset
 - Moderate
 - Severe
 - Proliferative
-
 Dataset can be sourced from Kaggle or public medical datasets.
+
+### Overview of the Five Categories
+
+The system classifies diabetic retinopathy into five severity levels:
+
+| Category | Label | Description | Clinical Significance |
+|----------|-------|-------------|---------------------|
+| **No_DR** | 0 | No diabetic retinopathy detected | Normal retina, no treatment needed |
+| **Mild** | 1 | Mild non-proliferative diabetic retinopathy | Early stage, monitoring recommended |
+| **Moderate** | 2 | Moderate non-proliferative diabetic retinopathy | Moderate damage, regular follow-ups needed |
+| **Severe** | 3 | Severe non-proliferative diabetic retinopathy | Significant damage, treatment may be required |
+| **Proliferate** | 4 | Proliferative diabetic retinopathy | Advanced stage, urgent treatment required |
+
 
 ## Tech Stack
 - Programming: Python
 - Libraries: PyTorch, NumPy, Pandas
 - Model: ResNet50 (CNN)
 - UI Framework: Gradio
+  
 
-## Workflow
-1. Data Preprocessing
-- Resize images to 224x224
-- Normalize using ImageNet standards
-- Remove noise and improve quality
-- 
-2. Dataset Balancing
-- Balanced all classes to avoid bias
-- 
-3. Model Development
-- Used ResNet50 pre-trained on ImageNet
-- Fine-tuned for DR classification
-4. Training & Evaluation
-- Train-test split (80/20)
-- Metrics: Accuracy, Precision, Recall, F1-score
-5. Prediction System
-- Input retinal image
-- Output DR severity level with probability
-6. Deployment
-- Integrated with Gradio interface
-- Real-time prediction through browser
+##  System Architecture
+
+### High-Level System Flow
+
+The system follows a complete machine learning pipeline from data preparation to deployment:
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    SYSTEM ARCHITECTURE                          │
+└─────────────────────────────────────────────────────────────────┘
+
+    ┌──────────────┐
+    │   Raw Fundus │
+    │    Images    │
+    └──────┬───────┘
+           │
+           ▼
+    ┌──────────────┐
+    │ Preprocessing│  ← Crop dark borders, resize, normalize
+    │   Pipeline   │
+    └──────┬───────┘
+           │
+           ▼
+    ┌──────────────┐
+    │   Dataset    │  ← Balance classes, create CSV labels
+    │  Balancing   │
+    └──────┬───────┘
+           │
+           ▼
+    ┌──────────────┐
+    │ Train/Val    │  ← 80% training, 20% validation split
+    │   Split      │
+    └──────┬───────┘
+           │
+           ▼
+    ┌──────────────┐
+    │   Model      │  ← ResNet50 with transfer learning
+    │  Training    │
+    └──────┬───────┘
+           │
+           ▼
+    ┌──────────────┐
+    │ Model Saving │  ← Save as dr_model_resnet50_v2.pth
+    │   (.pth)     │
+    └──────┬───────┘
+           │
+           ▼
+    ┌──────────────┐
+    │   Gradio     │  ← Web-based user interface
+    │  Interface   │
+    └──────┬───────┘
+           │
+           ▼
+    ┌──────────────┐
+    │  Prediction  │  ← Real-time DR severity classification
+    │   Results    │
+    └──────────────┘
+```
+
+### Detailed Block Diagram
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                         DATA PREPARATION PHASE                       │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                      │
+│  Raw Images → crop_and_resize.py → Balanced Dataset                 │
+│      ↓              ↓                        ↓                       │
+│  [Various]    [512x512]              [Class-balanced]               │
+│  Sizes        Cropped                Folders                         │
+│                                                                      │
+│  balance_dataset.py → balanced_labels.csv                           │
+│      ↓                                                               │
+│  [No_DR: 265, Mild: 265, Moderate: 265,                             │
+│   Severe: 190, Proliferate: 265]                                    │
+│                                                                      │
+└─────────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                          TRAINING PHASE                              │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                      │
+│  train_resnet50.py                                                   │
+│      │                                                               │
+│      ├─→ Load balanced_labels.csv                                    │
+│      ├─→ Split 80/20 (stratified)                                   │
+│      ├─→ DataLoader (batch_size=32)                                 │
+│      ├─→ ResNet50 Model (pretrained ImageNet)                        │
+│      ├─→ Training Loop (5 epochs)                                    │
+│      │   ├─→ Forward Pass                                            │
+│      │   ├─→ Loss Calculation (CrossEntropyLoss)                    │
+│      │   ├─→ Backward Pass                                           │
+│      │   └─→ Optimizer Step (Adam, lr=1e-4)                          │
+│      └─→ Save Model → dr_model_resnet50_v2.pth                      │
+│                                                                      │
+└─────────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                        INFERENCE PHASE                               │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                      │
+│  app.py (Gradio Interface)                                          │
+│      │                                                               │
+│      ├─→ Load dr_model_resnet50_v2.pth                              │
+│      ├─→ User Uploads Fundus Image                                  │
+│      ├─→ Preprocessing:                                              │
+│      │   ├─→ Resize to 224x224                                       │
+│      │   ├─→ Convert to Tensor                                       │
+│      │   └─→ Normalize (ImageNet stats)                             │
+│      ├─→ Model Forward Pass                                          │
+│      ├─→ Softmax → Probabilities                                     │
+│      └─→ Display Results (5 class confidences)                      │
+│                                                                      │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+
+### Dataset Structure
+
+The project uses a structured dataset organized into class-specific folders:
+
+```
+data/
+└── colored_images/
+    ├── No_DR/              (Class 0)
+    ├── Mild/               (Class 1)
+    ├── Moderate/           (Class 2)
+    ├── Severe/             (Class 3)
+    └── Proliferate_DR/     (Class 4)
+```
+![Data-Visualization](https://github.com/praveengouda25/Diabetic-Retinopathy-using-Deep-Learning/blob/a9bec08f81259de3a99391da7fa1156d183d26f1/output/Picture3.png) 
+### Class Distribution
+
+**Original Dataset:**
+- The original dataset contains fundus images with varying class distributions
+- Class imbalance is common in medical datasets, with "No_DR" typically having more samples than severe cases
+
+**Balanced Dataset:**
+After running the balancing script (`balance_dataset.py`), the dataset is balanced to:
+
+| Class | Label | Target Count | Final Count |
+|-------|-------|--------------|-------------|
+| No_DR | 0 | 265 | 265 |
+| Mild | 1 | 265 | 265 |
+| Moderate | 2 | 265 | 265 |
+| Severe | 3 | 190 | 190 |
+| Proliferate | 4 | 265 | 265 |
+
+**Total Balanced Images: 1,250**
+
+### Why Balancing is Needed
+
+Class imbalance is a critical problem in medical image classification:
+
+1. **Model Bias**: Without balancing, the model tends to predict the majority class more frequently
+2. **Poor Performance on Rare Classes**: Severe and proliferative cases are less common but more critical to detect accurately
+3. **Unfair Evaluation**: Accuracy alone becomes misleading when classes are imbalanced
+4. **Clinical Impact**: Missing a severe case has worse consequences than misclassifying a mild case
+
+**Solution Implemented:**
+- Downsampling: Randomly sample from overrepresented classes
+- Augmentation: Generate synthetic images for underrepresented classes using:
+  - Random horizontal flips
+  - Random rotations (±10 degrees)
+  - Color jittering (brightness, contrast, saturation, hue adjustments)
+
+### How Images are Used (Fundus Imaging Basics)
+
+**Fundus Imaging Process:**
+1. **Image Capture**: A fundus camera takes a photograph of the retina through a dilated pupil
+2. **Image Characteristics**:
+   - Circular field of view (typically 30-45 degrees)
+   - Dark borders around the circular retina region
+   - Central optic disc (bright circular area)
+   - Blood vessels radiating from the optic disc
+   - Macula (dark central region responsible for sharp vision)
+
+**What the Model Looks For:**
+- **Microaneurysms**: Small red dots (early DR sign)
+- **Hemorrhages**: Bleeding in the retina
+- **Hard Exudates**: Yellow-white deposits
+- **Cotton Wool Spots**: White fluffy patches
+- **Neovascularization**: Abnormal new blood vessels (proliferative DR)
+
+**Image Preprocessing for Model:**
+- Remove dark borders to focus on retinal region
+- Resize to standard dimensions (224x224 for ResNet50)
+- Normalize pixel values to match ImageNet statistics
+- Apply augmentations during training to increase robustness
+
+---
+![Data-Visualization](https://github.com/praveengouda25/Diabetic-Retinopathy-using-Deep-Learning/blob/a9bec08f81259de3a99391da7fa1156d183d26f1/output/Picture3.png) 
 
 ## Installation (Windows PowerShell)
 ```powershell
