@@ -274,7 +274,7 @@ Class imbalance is a critical problem in medical image classification:
 - Example: `[0.05, 0.10, 0.70, 0.10, 0.05]` → 70% confidence for "Moderate"
 
 ### Predicted Class Displayed
-![Image Processing](https://github.com/praveengouda25/Diabetic-Retinopathy-using-Deep-Learning/blob/1c469112bc2e61b208ba89601320ea4f3f183f34/output/Picture2.png) 
+![](https://github.com/praveengouda25/Diabetic-Retinopathy-using-Deep-Learning/blob/9762e4f9c2fa0842ea5803697a95cc3a9bb6c6a0/output/Screenshot%20(9).png) 
 
 
 **Process:**
@@ -347,7 +347,7 @@ Display Results (Gradio UI)
 
 ---
 
-## 8. User Interface (Gradio/Flask UI)
+##  User Interface (Gradio/Flask UI)
 
 ### Purpose of the Interface
 
@@ -358,6 +358,35 @@ The Gradio web interface provides an **accessible, user-friendly platform** for 
 3. **Educational**: Demonstrates AI capabilities in medical imaging
 4. **Prototype Deployment**: Provides a production-ready interface for clinical trials
 
+---
+
+## Research Publication
+
+This project has been successfully published in a research journal, demonstrating its practical applicability and contribution to the field of medical image analysis.
+
+Title: Diabetic Retinopathy Detection using Deep Learning
+Journal: IRJMETS (International Research Journal of Modernization in Engineering Technology and Science)
+Year: December, 2025
+
+![Certificate](https://github.com/praveengouda25/Diabetic-Retinopathy-using-Deep-Learning/blob/76adc734f58365fbbc1636c1dd3aaafead929996/output/Screenshot%20(15).png) 
+
+This research presents an automated system for detecting diabetic retinopathy using deep learning techniques. A Convolutional Neural Network based on the ResNet50 architecture is used to analyze retinal fundus images and classify them into different severity levels. The system improves early diagnosis and supports healthcare professionals by providing fast and reliable predictions.
+
+![View-Paper](https://github.com/praveengouda25/Diabetic-Retinopathy-using-Deep-Learning/blob/76adc734f58365fbbc1636c1dd3aaafead929996/output/Screenshot%20(15).png) 
+
+---
+## Conclusion ::
+This project successfully implements a complete diabetic retinopathy detection system using a Convolutional Neural Network (CNN) model trained on retinal images. Through systematic stages such as data collection, preprocessing, CNN architecture design, model training and evaluation, and deployment through a simple user interface, the system now functions as a reliable automated screening tool. The trained model is capable of accurately classifying diabetic retinopathy severity levels, thereby supporting early diagnosis and reducing manual workload for ophthalmologists. By integrating Python-based machine learning workflows with image-processing techniques, the project demonstrates a fully working solution that enhances the accuracy, accessibility, and efficiency of retinal disease detection.
+
+
+## Future Enhancement ::
+- Integration with a Retinal Image ScannerThe system can be connected to a real-time retinal imaging device to directly capture fundus images and automatically check if the image quality is readable or needs re-capturing before analysis.
+  
+- Large-Scale Model for Regional AdaptationThe model can be expanded to process large datasets containing images from different regions, age groups, and camera types, making the detection system more accurate for diverse populations.
+
+- Automated Image Quality Assessment ModuleA pre-processing module can be added to automatically detect blurred, under-exposed, or noisy images and prompt the user to retake them, improving overall detection accuracy.
+
+- Advanced Cloud-Based Processing SystemThe system can be deployed on cloud servers to handle large-scale image processing in real time, enabling hospitals and screening camps to analyze thousands of retinal images per day.
 
 
 ## Installation (Windows PowerShell)
