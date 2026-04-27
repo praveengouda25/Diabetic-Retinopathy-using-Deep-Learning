@@ -3,6 +3,11 @@
 ## Description
 This project detects diabetic retinopathy severity from retinal fundus images using deep learning.  
 It includes a trained ResNet50-based classifier and a Gradio web interface for quick local testing and demo use.
+Diabetic Retinopathy (DR) is a serious eye disease caused by prolonged diabetes, which damages the blood vessels in the retina and can lead to blindness if not detected early.
+
+- Early detection can prevent severe vision loss
+- Manual diagnosis requires expert ophthalmologists
+- Automated systems can assist in faster and accessible screening
 
 ## Features
 - Retinal image classification into 5 diabetic retinopathy severity classes
@@ -11,11 +16,44 @@ It includes a trained ResNet50-based classifier and a Gradio web interface for q
 - Sample example images for quick testing
 - Windows-friendly run scripts and environment setup
 
+## Dataset
+Retinal fundus images dataset
+- - Images categorized into 5 classes:
+- No_DR
+- Mild
+- Moderate
+- Severe
+- Proliferative
+
+Dataset can be sourced from Kaggle or public medical datasets.
+
 ## Tech Stack
-- Python
-- PyTorch
-- ResNet50
-- Gradio
+- Programming: Python
+- Libraries: PyTorch, NumPy, Pandas
+- Model: ResNet50 (CNN)
+- UI Framework: Gradio
+
+## Workflow
+1. Data Preprocessing
+- Resize images to 224x224
+- Normalize using ImageNet standards
+- Remove noise and improve quality
+- 
+2. Dataset Balancing
+- Balanced all classes to avoid bias
+- 
+3.  Model Development
+- Used ResNet50 pre-trained on ImageNet
+- Fine-tuned for DR classification
+- Training & Evaluation
+- Train-test split (80/20)
+Metrics: Accuracy, Precision, Recall, F1-score
+Prediction System
+Input retinal image
+Output DR severity level with probability
+Deployment
+Integrated with Gradio interface
+Real-time prediction through browser
 
 ## Installation (Windows PowerShell)
 ```powershell
