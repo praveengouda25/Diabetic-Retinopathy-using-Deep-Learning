@@ -306,7 +306,7 @@ confidence_score = confidence.item()
 - Shows confidence percentage
 - Provides interpretation guide
 
-![Image Processing](https://github.com/praveengouda25/Diabetic-Retinopathy-using-Deep-Learning/blob/1c469112bc2e61b208ba89601320ea4f3f183f34/output/Picture2.png) 
+![User-Interface](https://github.com/praveengouda25/Diabetic-Retinopathy-using-Deep-Learning/blob/76adc734f58365fbbc1636c1dd3aaafead929996/output/Screenshot%20(15).png) 
 
 ### Complete Pipeline Summary
 
