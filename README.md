@@ -42,18 +42,18 @@ Dataset can be sourced from Kaggle or public medical datasets.
 2. Dataset Balancing
 - Balanced all classes to avoid bias
 - 
-3.  Model Development
+3. Model Development
 - Used ResNet50 pre-trained on ImageNet
 - Fine-tuned for DR classification
-- Training & Evaluation
+4. Training & Evaluation
 - Train-test split (80/20)
-Metrics: Accuracy, Precision, Recall, F1-score
-Prediction System
-Input retinal image
-Output DR severity level with probability
-Deployment
-Integrated with Gradio interface
-Real-time prediction through browser
+- Metrics: Accuracy, Precision, Recall, F1-score
+5. Prediction System
+- Input retinal image
+- Output DR severity level with probability
+6. Deployment
+- Integrated with Gradio interface
+- Real-time prediction through browser
 
 ## Installation (Windows PowerShell)
 ```powershell
