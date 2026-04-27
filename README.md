@@ -27,7 +27,7 @@ Diabetic Retinopathy (DR) is a serious eye disease caused by prolonged diabetes,
 - Windows-friendly run scripts and environment setup
 
 ## Dataset
-![Data-Visualization](https://github.com/praveengouda25/Diabetic-Retinopathy-using-Deep-Learning/blob/b7aa21dfe159f1636662d94e4f8df5ef05fa851c/output/Screenshot%20(18).png)) 
+![Data-Visualization](https://github.com/praveengouda25/Diabetic-Retinopathy-using-Deep-Learning/blob/a9bec08f81259de3a99391da7fa1156d183d26f1/output/Picture3.png) 
 Retinal fundus images dataset
 - - Images categorized into 5 classes:
 - No_DR
