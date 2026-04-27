@@ -368,11 +368,12 @@ Title: Diabetic Retinopathy Detection using Deep Learning
 Journal: IRJMETS (International Research Journal of Modernization in Engineering Technology and Science)
 Year: December, 2025
 
-![Certificate](https://github.com/praveengouda25/Diabetic-Retinopathy-using-Deep-Learning/blob/76adc734f58365fbbc1636c1dd3aaafead929996/output/Screenshot%20(15).png) 
+![Certificate](https://github.com/praveengouda25/Diabetic-Retinopathy-using-Deep-Learning/blob/e45ea1beca3766387bb7729b9b593c075e8d9b04/output/Screenshot%20(189).png) 
 
 This research presents an automated system for detecting diabetic retinopathy using deep learning techniques. A Convolutional Neural Network based on the ResNet50 architecture is used to analyze retinal fundus images and classify them into different severity levels. The system improves early diagnosis and supports healthcare professionals by providing fast and reliable predictions.
 
-![View-Paper](https://github.com/praveengouda25/Diabetic-Retinopathy-using-Deep-Learning/blob/76adc734f58365fbbc1636c1dd3aaafead929996/output/Screenshot%20(15).png) 
+## ![## View-Paper]
+(https://drive.google.com/file/d/1EgnBCJmiDb0n87FdjZNRciny7eNyE_M8/view?usp=sharing) 
 
 ---
 ## Conclusion ::
