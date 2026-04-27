@@ -191,7 +191,7 @@ data/
     ├── Severe/             (Class 3)
     └── Proliferate_DR/     (Class 4)
 ```
-![](https://github.com/praveengouda25/Diabetic-Retinopathy-using-Deep-Learning/blob/e1a6304e03150d250477461130a47d741542024d/output/Screenshot%20(9).png) 
+![Image Processing](https://github.com/praveengouda25/Diabetic-Retinopathy-using-Deep-Learning/blob/1c469112bc2e61b208ba89601320ea4f3f183f34/output/Picture2.png) 
 ### Class Distribution
 
 **Original Dataset:**
